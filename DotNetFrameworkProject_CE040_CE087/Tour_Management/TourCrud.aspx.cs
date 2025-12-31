@@ -15,7 +15,7 @@ namespace Tour_Management
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            if (!Page.IsPostBack)
+            if (!IsPostBack)
             {
                 refreshdata();
             }
