@@ -1,0 +1,47 @@
+@page
+@model TourManagement.Web.Pages.Bookings.DetailsModel
+@{
+    ViewData["Title"] = "Booking Details";
+}
+
+<h1>Booking Details</h1>
+
+@if (Model.Booking != null)
+{
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Booking #@Model.Booking.Id</h4>
+
+                    <dl class="row">
+                        <dt class="col-sm-3">Tour Name:</dt>
+                        <dd class="col-sm-9">@Model.Booking.TourName</dd>
+
+                        <dt class="col-sm-3">Place:</dt>
+                        <dd class="col-sm-9">@Model.Booking.Place</dd>
+
+                        <dt class="col-sm-3">Email:</dt>
+                        <dd class="col-sm-9">@Model.Booking.Email</dd>
+
+                        <dt class="col-sm-3">First Name:</dt>
+                        <dd class="col-sm-9">@Model.Booking.FirstName</dd>
+
+                        <dt class="col-sm-3">Booking Date:</dt>
+                        <dd class="col-sm-9">@Model.Booking.BookingDate.ToString("MMMM dd, yyyy HH:mm")</dd>
+                    </dl>
+
+                    <div class="mt-4">
+                        <a href="/Bookings" class="btn btn-secondary">Back to List</a>
+                        <a href="/Bookings/Delete?id=@Model.Booking.Id" class="btn btn-danger">Delete Booking</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="alert alert-warning">Booking not found.</div>
+    <a href="/Bookings" class="btn btn-secondary">Back to List</a>
+}

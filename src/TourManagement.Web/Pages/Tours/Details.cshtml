@@ -1,0 +1,55 @@
+@page
+@model TourManagement.Web.Pages.Tours.DetailsModel
+@{
+    ViewData["Title"] = "Tour Details";
+}
+
+<h1>Tour Details</h1>
+
+@if (Model.Tour != null)
+{
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card">
+                @if (!string.IsNullOrEmpty(Model.Tour.PicturePath))
+                {
+                    <img src="~/uploads/tours/@Model.Tour.PicturePath" class="card-img-top" alt="@Model.Tour.TourName" style="max-height: 400px; object-fit: cover;">
+                }
+                <div class="card-body">
+                    <h2 class="card-title">@Model.Tour.TourName</h2>
+
+                    <dl class="row">
+                        <dt class="col-sm-3">Place:</dt>
+                        <dd class="col-sm-9">@Model.Tour.Place</dd>
+
+                        <dt class="col-sm-3">Days:</dt>
+                        <dd class="col-sm-9">@Model.Tour.Days days</dd>
+
+                        <dt class="col-sm-3">Price:</dt>
+                        <dd class="col-sm-9">$@Model.Tour.Price.ToString("N2")</dd>
+
+                        <dt class="col-sm-3">Locations:</dt>
+                        <dd class="col-sm-9">@Model.Tour.Locations</dd>
+
+                        <dt class="col-sm-3">Information:</dt>
+                        <dd class="col-sm-9">@Model.Tour.TourInfo</dd>
+
+                        <dt class="col-sm-3">Created:</dt>
+                        <dd class="col-sm-9">@Model.Tour.CreatedDate.ToString("MMM dd, yyyy")</dd>
+                    </dl>
+
+                    <div class="mt-4">
+                        <a href="/Tours/Edit?id=@Model.Tour.Id" class="btn btn-warning">Edit</a>
+                        <a href="/Bookings/Create?tourId=@Model.Tour.Id" class="btn btn-success">Book This Tour</a>
+                        <a href="/Tours" class="btn btn-secondary">Back to List</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="alert alert-warning">Tour not found.</div>
+    <a href="/Tours" class="btn btn-secondary">Back to List</a>
+}

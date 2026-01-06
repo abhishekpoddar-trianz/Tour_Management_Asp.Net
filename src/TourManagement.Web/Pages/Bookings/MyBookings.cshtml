@@ -1,0 +1,57 @@
+@page
+@model TourManagement.Web.Pages.Bookings.MyBookingsModel
+@{
+    ViewData["Title"] = "My Bookings";
+}
+
+<h1>My Bookings</h1>
+
+<form method="get" class="mb-3">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="input-group">
+                <input type="email" name="email" class="form-control" placeholder="Enter your email" value="@Model.Email" required />
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+@if (Model.Bookings != null && Model.Bookings.Any())
+{
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Booking ID</th>
+                    <th>Tour Name</th>
+                    <th>Place</th>
+                    <th>First Name</th>
+                    <th>Booking Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var booking in Model.Bookings)
+                {
+                    <tr>
+                        <td>@booking.Id</td>
+                        <td>@booking.TourName</td>
+                        <td>@booking.Place</td>
+                        <td>@booking.FirstName</td>
+                        <td>@booking.BookingDate.ToString("MMM dd, yyyy")</td>
+                        <td>
+                            <a href="/Bookings/Details?id=@booking.Id" class="btn btn-primary btn-sm">Details</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else if (!string.IsNullOrEmpty(Model.Email))
+{
+    <div class="alert alert-info">No bookings found for this email address.</div>
+}
+
+<a href="/Tours" class="btn btn-secondary">Back to Tours</a>
