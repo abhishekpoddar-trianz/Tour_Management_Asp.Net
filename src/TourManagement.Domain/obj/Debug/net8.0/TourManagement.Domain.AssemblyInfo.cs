@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TourManagement.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fb761155ac9b3faf3e00c3a1e68bafec56322304")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+78552f2f72d0f8fe8a68b2451ee1b1c65da23214")]
 [assembly: System.Reflection.AssemblyProductAttribute("TourManagement.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TourManagement.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
