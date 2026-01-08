@@ -1,29 +1,77 @@
-# Tour_Management_Project
- simple asp.net application for booking of tours.
- 
-# Admin
-* Add Tour
-* Manage Tour 
-* See Bookings
-<img width="752" alt="image" src="https://user-images.githubusercontent.com/81226571/196478877-2a66ec3b-1a71-48ce-ab20-6013890ae19d.png">
-<img width="760" alt="image" src="https://user-images.githubusercontent.com/81226571/196479030-a0cbc14c-6085-4d7c-8de5-86414aa8be7f.png">
+# Tour Management System - .NET 8 Migration
 
-# User
-- Manage Profile
-- Book Tour
-- See his booking
-<img width="745" alt="image" src="https://user-images.githubusercontent.com/81226571/196478761-6a7d261a-1769-4c56-9052-b3e4a77722e5.png">
+## Overview
+This project has been successfully migrated from ASP.NET Web Forms 4.7.2 to .NET 8 using clean architecture principles.
 
-## How to run?
-- Fork Project 
-- clone repository( git clone https://github.com/jaygajera17/Tour_Management_Asp.Net)
-- open app_data folder
-- right click on database file (.mdf) click modify connection.
-- you can also config your own database by step mention in [database.txt](https://github.com/jaygajera17/Tour_Management_Asp.Net/blob/main/Database.txt) file.
+## Architecture
+The application follows clean architecture with four main layers:
 
-## Important Links
-- 𝗬𝗼𝘂𝘁𝘂𝗯𝗲 𝗽𝗿𝗼𝗷𝗲𝗰𝘁 𝘃𝗶𝗱𝗲𝗼 𝗪𝗼𝗿𝗸𝗶𝗻𝗴 𝗗𝗲𝗺𝗼  ::---  [  click here  ](https://youtu.be/r-UfxsVzndk) [![youtube][youtube-shield]][youtube-url]
+- **Domain Layer**: Contains entities, interfaces, and DTOs
+- **Application Layer**: Contains business logic, services, and AutoMapper configurations
+- **Infrastructure Layer**: Contains data access, EF Core DbContext, and repository implementations
+- **Web Layer**: ASP.NET Core Razor Pages UI
 
+## Project Structure
+```
+TourManagement.sln
+├── src/
+│   ├── TourManagement.Domain/         # Domain entities and interfaces
+│   ├── TourManagement.Application/    # Business logic and services
+│   ├── TourManagement.Infrastructure/ # Data access and repositories
+│   └── TourManagement.Web/            # Razor Pages UI
+```
 
-[youtube-shield]:https://img.shields.io/youtube/views/r-UfxsVzndk?style=social
-[youtube-url]:  https://youtu.be/r-UfxsVzndk
+## Key Features Migrated
+- Tour Management (CRUD operations)
+- User Management
+- Booking System
+- SQL Server database with EF Core 8.0
+- Async/await patterns throughout
+- Dependency injection
+- Structured logging with Serilog
+
+## Database Setup
+1. Update the connection string in `appsettings.json`
+2. Run migrations:
+   ```bash
+   dotnet ef migrations add InitialCreate --project src/TourManagement.Infrastructure --startup-project src/TourManagement.Web
+   dotnet ef database update --project src/TourManagement.Infrastructure --startup-project src/TourManagement.Web
+   ```
+
+## Running the Application
+```bash
+cd src/TourManagement.Web
+dotnet run
+```
+
+Navigate to https://localhost:5001 or http://localhost:5000
+
+## Migration Notes
+- Replaced System.Web with ASP.NET Core equivalents
+- Migrated ADO.NET to Entity Framework Core 8.0
+- Converted Web Forms pages to Razor Pages
+- Replaced ViewState with modern state management
+- Implemented proper async/await patterns
+- Added structured logging
+- Implemented clean architecture principles
+
+## Technologies Used
+- .NET 8
+- ASP.NET Core Razor Pages
+- Entity Framework Core 8.0
+- AutoMapper 12.0
+- Serilog 8.0
+- Bootstrap 5
+- SQL Server
+
+## Security Improvements
+- Parameterized queries via EF Core (SQL injection prevention)
+- File upload validation
+- HTTPS enforcement
+- Proper error handling
+
+## Next Steps
+- Consider implementing ASP.NET Core Identity for authentication
+- Add unit and integration tests
+- Implement caching strategies
+- Add API endpoints if needed

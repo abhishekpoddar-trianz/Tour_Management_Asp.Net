@@ -1,0 +1,40 @@
+@page
+@model TourManagement.Web.Pages.IndexModel
+@{
+    ViewData["Title"] = "Tour Management System";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to Tour Management System</h1>
+    <p class="lead">Manage your tours, bookings, and customers efficiently</p>
+
+    <div class="row mt-5">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Tours</h5>
+                    <p class="card-text">Browse and manage available tours</p>
+                    <a href="/Tours/Index" class="btn btn-primary">View Tours</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Bookings</h5>
+                    <p class="card-text">View and manage tour bookings</p>
+                    <a href="/Bookings/Index" class="btn btn-primary">View Bookings</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Users</h5>
+                    <p class="card-text">Manage user accounts</p>
+                    <a href="/Users/Index" class="btn btn-primary">View Users</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
