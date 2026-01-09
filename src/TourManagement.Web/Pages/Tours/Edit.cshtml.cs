@@ -103,7 +103,9 @@ public class EditModel : PageModel
 
             if (Input.PictureFile != null)
             {
-                var uploadsFolder = Path.Combine(_environment.WebRootPath, "images", "tours");
+                // Use environment variable for storage path or default to wwwroot
+                var storageBasePath = Environment.GetEnvironmentVariable("STORAGE_BASE_PATH") ?? _environment.WebRootPath;
+                var uploadsFolder = Path.Combine(storageBasePath, "images", "tours");
                 Directory.CreateDirectory(uploadsFolder);
 
                 var uniqueFileName = Guid.NewGuid().ToString() + "_" + Input.PictureFile.FileName;
@@ -118,7 +120,7 @@ public class EditModel : PageModel
 
                 if (!string.IsNullOrEmpty(Input.CurrentPicturePath))
                 {
-                    var oldFilePath = Path.Combine(_environment.WebRootPath, Input.CurrentPicturePath.TrimStart('/'));
+                    var oldFilePath = Path.Combine(storageBasePath, Input.CurrentPicturePath.TrimStart('/'));
                     if (System.IO.File.Exists(oldFilePath))
                     {
                         System.IO.File.Delete(oldFilePath);

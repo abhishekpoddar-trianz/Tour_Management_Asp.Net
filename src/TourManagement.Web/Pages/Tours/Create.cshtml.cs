@@ -71,7 +71,9 @@ public class CreateModel : PageModel
 
             if (Input.PictureFile != null)
             {
-                var uploadsFolder = Path.Combine(_environment.WebRootPath, "images", "tours");
+                // Use environment variable for storage path or default to wwwroot
+                var storageBasePath = Environment.GetEnvironmentVariable("STORAGE_BASE_PATH") ?? _environment.WebRootPath;
+                var uploadsFolder = Path.Combine(storageBasePath, "images", "tours");
                 Directory.CreateDirectory(uploadsFolder);
 
                 var uniqueFileName = Guid.NewGuid().ToString() + "_" + Input.PictureFile.FileName;
