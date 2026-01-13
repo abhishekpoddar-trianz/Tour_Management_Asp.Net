@@ -1,0 +1,53 @@
+# Build artifacts
+bin/
+obj/
+
+# Visual Studio
+.vs/
+.vscode/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Test results
+TestResults/
+*.trx
+*.coverage
+
+# NuGet
+packages/
+*.nupkg
+*.snupkg
+
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# Documentation
+*.md
+README*
+LICENSE*
+
+# Logs
+logs/
+*.log
+
+# Database files
+*.mdf
+*.ldf
+App_Data/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Deployment scripts
+scripts/
+kubernetes/
+docs/
+docker-compose.yml
+Dockerfile

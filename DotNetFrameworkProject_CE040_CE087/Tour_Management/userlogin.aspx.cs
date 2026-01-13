@@ -18,11 +18,11 @@ namespace Tour_Management
 
   
             protected void Btn_Submit(object sender, EventArgs e)
-            { 
-            
-               
+            {
 
-                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString);
+
+
+                SqlConnection conn = new SqlConnection(ConnectionStringProvider.GetConnectionString("dbconnection"));
                 conn.Open();
                 string checkPasswordQuery = "select password from Userinfo where password='" + txtPassword.Text + "' and email = '" + txtEmail.Text + "'";
                 SqlCommand passComm = new SqlCommand(checkPasswordQuery, conn);

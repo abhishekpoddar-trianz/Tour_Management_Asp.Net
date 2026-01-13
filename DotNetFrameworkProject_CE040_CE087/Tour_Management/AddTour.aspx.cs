@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.IO;
 
 namespace Tour_Management
 {
@@ -18,7 +19,7 @@ namespace Tour_Management
        
         protected void Register_Click(object sender, EventArgs e)
         {
-            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString);
+            SqlConnection conn = new SqlConnection(ConnectionStringProvider.GetConnectionString("dbconnection"));
             conn.Open();
             string insertQuery = "insert into Tour(TOUR_NAME,PLACE,DAYS,PRICE,LOCATIONS,TOUR_INFO,pic) values(@TOUR_NAME,@PLACE,@DAYS,@PRICE,@LOCATIONS,@TOUR_INFO,@pic)";
             SqlCommand com = new SqlCommand(insertQuery, conn);
@@ -30,7 +31,14 @@ namespace Tour_Management
             com.Parameters.AddWithValue("@LOCATIONS", locations.Text);
             com.Parameters.AddWithValue("@TOUR_INFO", tour_info.Text);
 
-            FileUpload1.SaveAs(Server.MapPath("~/Tour_pics/") + FileUpload1.FileName);
+            // Use environment variable for upload path or default to /app/uploads
+            var uploadPath = Environment.GetEnvironmentVariable("UPLOAD_PATH") ?? "/app/uploads";
+            if (!System.IO.Directory.Exists(uploadPath))
+            {
+                System.IO.Directory.CreateDirectory(uploadPath);
+            }
+            var filePath = System.IO.Path.Combine(uploadPath, FileUpload1.FileName);
+            FileUpload1.SaveAs(filePath);
 
              com.Parameters.AddWithValue("@pic", FileUpload1.FileName);
 

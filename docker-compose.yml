@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  tour-management:
+    image: tour-management:latest
+    container_name: tour-management-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - PORT=8080
+      - DB_SERVER=${DB_SERVER:-your-db-server}
+      - DB_NAME=${DB_NAME:-tourdb}
+      - DB_USER=${DB_USER:-your-db-user}
+      - DB_PASSWORD=${DB_PASSWORD:-your-db-password}
+      - CHART_TEMP_DIR=/tmp/charts
+      - UPLOAD_PATH=/app/uploads
+    volumes:
+      - ./uploads:/app/uploads
+      - ./logs:/app/logs
+    networks:
+      - app-network
+    restart: unless-stopped
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  uploads:
+  logs:
