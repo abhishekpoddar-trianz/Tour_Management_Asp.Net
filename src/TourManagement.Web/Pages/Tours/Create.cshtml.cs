@@ -89,7 +89,7 @@ public class CreateModel : PageModel
                 Price = Input.Price,
                 Locations = Input.Locations,
                 TourInfo = Input.TourInfo,
-                PictureFileName = fileName
+                PicturePath = fileName
             };
 
             await _tourService.CreateAsync(tour);

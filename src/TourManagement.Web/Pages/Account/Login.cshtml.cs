@@ -48,14 +48,7 @@ public class LoginModel : PageModel
 
         try
         {
-            var isValid = await _userService.ValidateCredentialsAsync(Input.Email, Input.Password);
-            if (!isValid)
-            {
-                ModelState.AddModelError(string.Empty, "Invalid email or password.");
-                return Page();
-            }
-
-            var user = await _userService.GetByEmailAsync(Input.Email);
+            var user = await _userService.AuthenticateAsync(Input.Email, Input.Password);
             if (user == null)
             {
                 ModelState.AddModelError(string.Empty, "User not found.");
